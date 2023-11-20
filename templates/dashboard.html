@@ -1,0 +1,33 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Dashboard</title>
+    <!-- Include necessary CSS styles -->
+</head>
+<body>
+    <h1>Gym Dashboard</h1>
+
+    <div>
+        <h3>Member Metrics</h3>
+        <p>Total Members: {{ total_members }}</p>
+        <p>Active Memberships: {{ active_memberships }}</p>
+    </div>
+
+    <div>
+        <h3>Class Metrics</h3>
+        <p>Upcoming Classes: {{ upcoming_classes }}</p>
+    </div>
+
+    <div>
+        <h3>Financial Metrics</h3>
+        <p>Total Revenue: {{ total_revenue }}</p>
+        <p>Pending Payments: {{ pending_payments }}</p>
+    </div>
+
+    <!-- Add more sections and metrics as needed -->
+
+</body>
+</html>

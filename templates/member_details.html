@@ -1,0 +1,40 @@
+<!-- templates/member_details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Details</title>
+    <!-- Include necessary CSS styles -->
+</head>
+<body>
+    <h1>Member Details</h1>
+
+    <h2>{{ member.FirstName }} {{ member.LastName }}</h2>
+
+    <!-- Display member details -->
+    <p><strong>Date of Birth:</strong> {{ member.DateOfBirth }}</p>
+    <p><strong>Contact Info:</strong> {{ member.ContactInfo }}</p>
+    <p><strong>Address:</strong> {{ member.Address }}</p>
+    <p><strong>Membership Start Date:</strong> {{ member.MembershipStart }}</p>
+    <p><strong>Membership Expiry Date:</strong> {{ member.MembershipExpiry }}</p>
+
+    <!-- Form for updating member details -->
+    <h3>Edit Member Details</h3>
+    <form action="{{ url_for('member_management.view_member', member_id=member.MemberID) }}" method="post">
+        <label for="updated_first_name">First Name:</label>
+        <input type="text" id="updated_first_name" name="updated_first_name" value="{{ member.FirstName }}" required>
+
+        <label for="updated_last_name">Last Name:</label>
+        <input type="text" id="updated_last_name" name="updated_last_name" value="{{ member.LastName }}" required>
+
+        <!-- Include additional input fields for other member details -->
+
+        <button type="submit">Update Member Details</button>
+    </form>
+
+    <!-- Add a link to go back to the members list -->
+    <a href="{{ url_for('member_management.member_management') }}">Back to Members List</a>
+
+</body>
+</html>
