@@ -1,0 +1,28 @@
+<!-- templates/view_personal_training.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Training Sessions</title>
+</head>
+<body>
+    <h1>Personal Training Sessions</h1>
+
+    <!-- Display all personal training sessions for the trainer -->
+    <ul>
+        {% for session in personal_training_sessions %}
+            <li>
+                Member: <a href="{{ url_for('member_management.view_member', member_id=session.MemberID) }}">
+                    {{ session.FirstName }} {{ session.LastName }}
+                </a>
+                <!-- You can display additional details or link to member details here -->
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('trainer_management.add_personal_training', trainer_id=trainer_id) }}">Add Personal Training Session</a>
+    <br>
+    <a href="{{ url_for('trainer_management.trainers') }}">Back to Trainers</a>
+</body>
+</html>

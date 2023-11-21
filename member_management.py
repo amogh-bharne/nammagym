@@ -37,30 +37,59 @@ def add_member():
     return redirect(url_for('member_management.member_management'))
 
 
+# member_management.py
+
+# ... (existing code)
+# member_management.py
+
+# ... (existing code)
+
 @member_management_routes.route('/members/<int:member_id>', methods=['GET', 'POST'])
 def view_member(member_id):
     if request.method == 'POST':
         # Handle form submission for member details update
         updated_first_name = request.form.get('updated_first_name')
         updated_last_name = request.form.get('updated_last_name')
+        updated_dob = request.form.get('updated_dob')
+        updated_contact_info = request.form.get('updated_contact_info')
+        updated_address = request.form.get('updated_address')
+        updated_membership_start = request.form.get('updated_membership_start')
+        updated_membership_expiry = request.form.get(
+            'updated_membership_expiry')
+
         # Extract and update other member details based on the form inputs
         query = """
             UPDATE Members
-            SET FirstName = %s, LastName = %s
+            SET FirstName = %s, LastName = %s, DateOfBirth = %s, ContactInfo = %s, Address = %s,
+                MembershipStart = %s, MembershipExpiry = %s
             WHERE MemberID = %s
         """
-        values = (updated_first_name, updated_last_name, member_id)
+        values = (
+            updated_first_name, updated_last_name, updated_dob, updated_contact_info, updated_address,
+            updated_membership_start, updated_membership_expiry, member_id
+        )
         execute_query(query, values)
 
         # Redirect to the members page after updating the member
         return redirect(url_for('member_management.member_management'))
 
-    # Retrieve member details from the database
-    query = "SELECT * FROM Members WHERE MemberID = %s"
-    member = execute_query(query, (member_id,), fetch_one=True)
+    # Fetch member details
+    member_query = "SELECT * FROM Members WHERE MemberID = %s"
+    member = execute_query(member_query, (member_id,), fetch_one=True)
+
+    # Fetch personal trainer details for the member
+    pt_query = """
+    SELECT PersonalTraining.MemberID, Trainers.TrainerID, Trainers.FirstName AS TrainerFirstName, Trainers.LastName AS TrainerLastName
+    FROM PersonalTraining
+    JOIN Trainers ON PersonalTraining.TrainerID = Trainers.TrainerID
+    WHERE PersonalTraining.MemberID = %s
+    """
+    personal_trainer = execute_query(pt_query, (member_id,), fetch_one=True)
 
     # Render the member details template
-    return render_template('member_details.html', member=member)
+    return render_template('member_details.html', member=member, personal_trainer=personal_trainer)
+
+
 
 
 # Delete route for members

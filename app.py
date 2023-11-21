@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from member_management import member_management_routes
+from trainer_management import trainer_management_routes
 from db_config import execute_query
 # Import other modules for different features
 
@@ -7,6 +8,7 @@ app = Flask(__name__)
 
 # Register routes from other modules
 app.register_blueprint(member_management_routes)
+app.register_blueprint(trainer_management_routes)
 
 # Register other blueprints for different features
 

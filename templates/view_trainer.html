@@ -1,0 +1,18 @@
+<!-- view_trainer.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ trainer.FirstName }} {{ trainer.LastName }}</title>
+</head>
+<body>
+    <h1>{{ trainer.FirstName }} {{ trainer.LastName }}</h1>
+    <p>Specialization: {{ trainer.Specialization }}</p>
+    <p>Contact Info: {{ trainer.ContactInfo }}</p>
+    <a href="{{ url_for('trainer_management.edit_trainer', trainer_id=trainer.TrainerID) }} class="btn btn-primary"">Edit Trainer</a>
+    <a href="{{ url_for('trainer_management.delete_trainer', trainer_id=trainer.TrainerID) }} class="btn btn-primary"">Delete Trainer</a>
+    <a href="{{ url_for('trainer_management.view_personal_training', trainer_id=trainer.TrainerID) }} class="btn btn-primary"">Personal Training</a>
+    <a href="{{ url_for('trainer_management.trainers') }}">Back to Trainers</a>
+</body>
+</html>

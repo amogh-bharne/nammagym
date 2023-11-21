@@ -1,0 +1,30 @@
+<!-- templates/trainers.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainers</title>
+</head>
+<body>
+    <h1>Trainers</h1>
+
+    <!-- Display all trainers -->
+    <ul>
+        {% for trainer in trainers %}
+            <li>
+                <a href="{{ url_for('trainer_management.view_trainer', trainer_id=trainer.TrainerID) }}">
+                    {{ trainer.FirstName }} {{ trainer.LastName }} - {{ trainer.Specialization }}
+                </a>
+                <!-- <a href="{{ url_for('trainer_management.edit_trainer', trainer_id=trainer.TrainerID) }}">Edit</a> -->
+                <a href="{{ url_for('trainer_management.delete_trainer', trainer_id=trainer.TrainerID) }}" class="btn btn-primary">Delete</a>
+
+                <!-- Add the button to access personal training -->
+                <a href="{{ url_for('trainer_management.view_personal_training', trainer_id=trainer.TrainerID) }}" class="btn btn-primary">Personal Training</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('trainer_management.add_trainer') }}">Add Trainer</a>
+</body>
+</html>

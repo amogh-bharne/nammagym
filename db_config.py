@@ -1,9 +1,17 @@
 import mysql.connector
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+password = os.getenv("PASSWORD")
+
+
+
 
 db_config = {
     'host': 'localhost',
     'user': 'root',
-    'password': '12345678',
+    'password': password,
     'database': 'nammagym'
 }
 

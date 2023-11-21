@@ -1,0 +1,22 @@
+<!-- edit_trainer.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Trainer</title>
+</head>
+<body>
+    <h1>Edit Trainer</h1>
+    <form action="{{ url_for('trainer_management.edit_trainer', trainer_id=trainer.TrainerID) }}" method="post">
+        <label for="specialization">Specialization:</label>
+        <input type="text" name="specialization" value="{{ trainer.Specialization }}"><br>
+
+        <label for="contact_info">Contact Info:</label>
+        <input type="text" name="contact_info" value="{{ trainer.ContactInfo }}"><br>
+
+        <input type="submit" value="Update Trainer">
+    </form>
+    <a href="{{ url_for('trainer_management.view_trainer', trainer_id=trainer.TrainerID) }}">Back to Trainer Details</a>
+</body>
+</html>

@@ -7,6 +7,8 @@
     <title>Member Details</title>
     <!-- Include necessary CSS styles -->
 </head>
+
+
 <body>
     <h1>Member Details</h1>
 
@@ -18,6 +20,19 @@
     <p><strong>Address:</strong> {{ member.Address }}</p>
     <p><strong>Membership Start Date:</strong> {{ member.MembershipStart }}</p>
     <p><strong>Membership Expiry Date:</strong> {{ member.MembershipExpiry }}</p>
+    <!-- member_details.html -->
+
+<!-- ... (existing code) -->
+
+<h2>Personal Trainer Details</h2>
+{% if personal_trainer %}
+    <p><strong>Name:</strong> {{ personal_trainer.TrainerFirstName }} {{ personal_trainer.TrainerLastName }}</p>
+    <p><strong>Trainer ID:</strong> {{ personal_trainer.TrainerID }}</p>
+    <p><a href="{{ url_for('trainer_management.view_trainer', trainer_id=personal_trainer.TrainerID) }}">View Trainer Details</a></p>
+{% else %}
+    <p>No personal trainer assigned.</p>
+{% endif %}
+
 
     <!-- Form for updating member details -->
     <h3>Edit Member Details</h3>
@@ -28,7 +43,21 @@
         <label for="updated_last_name">Last Name:</label>
         <input type="text" id="updated_last_name" name="updated_last_name" value="{{ member.LastName }}" required>
 
-        <!-- Include additional input fields for other member details -->
+        <!-- Add input fields for other member details -->
+        <label for="updated_dob">Date of Birth:</label>
+        <input type="date" id="updated_dob" name="updated_dob" value="{{ member.DateOfBirth }}" required>
+
+        <label for="updated_contact_info">Contact Info:</label>
+        <input type="text" id="updated_contact_info" name="updated_contact_info" value="{{ member.ContactInfo }}" required>
+
+        <label for="updated_address">Address:</label>
+        <input type="text" id="updated_address" name="updated_address" value="{{ member.Address }}" required>
+
+        <label for="updated_membership_start">Membership Start Date:</label>
+        <input type="date" id="updated_membership_start" name="updated_membership_start" value="{{ member.MembershipStart }}" required>
+
+        <label for="updated_membership_expiry">Membership Expiry Date:</label>
+        <input type="date" id="updated_membership_expiry" name="updated_membership_expiry" value="{{ member.MembershipExpiry }}" required>
 
         <button type="submit">Update Member Details</button>
     </form>
@@ -38,3 +67,4 @@
 
 </body>
 </html>
+
