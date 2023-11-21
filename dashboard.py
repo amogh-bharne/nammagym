@@ -1,5 +1,3 @@
-
-
 import mysql.connector
 from flask import Flask, render_template
 
@@ -9,7 +7,7 @@ app = Flask(__name__)
 db_config = {
     'host': 'localhost',
     'user': 'root',
-    'password': '123450',
+    'password': '12345678',
     'database': 'nammagym'
 }
 

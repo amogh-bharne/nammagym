@@ -3,7 +3,7 @@ import mysql.connector
 db_config = {
     'host': 'localhost',
     'user': 'root',
-    'password': '123450',
+    'password': '12345678',
     'database': 'nammagym'
 }
 

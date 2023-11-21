@@ -63,3 +63,15 @@ def view_member(member_id):
     return render_template('member_details.html', member=member)
 
 
+# Delete route for members
+@member_management_routes.route('/members/delete/<int:member_id>', methods=['POST'])
+def delete_member(member_id):
+    if request.method == 'POST':
+        # Execute SQL DELETE query to remove member by MemberID
+        delete_query = "DELETE FROM Members WHERE MemberID = %s"
+        execute_query(delete_query, (member_id,))
+        
+        # Redirect to the members page after deletion
+        return redirect(url_for('member_management.member_management'))
+
+
