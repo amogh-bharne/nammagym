@@ -1,0 +1,17 @@
+<!-- templates/edit_attendance.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include necessary headers and stylesheets -->
+</head>
+<body>
+    <h1>Edit Attendance</h1>
+    <form action="{{ url_for('attendance_maintenance.edit_attendance', attendance_id=attendance_record.AttendanceID) }}" method="post">
+        <label for="attendance_status">Attendance Status:</label>
+        <input type="text" id="attendance_status" name="attendance_status" value="{{ attendance_record.AttendanceStatus }}" required><br>
+
+        <button type="submit">Update Attendance</button>
+    </form>
+    <a href="{{ url_for('attendance_maintenance.view_attendance') }}">Back to Attendance Records</a>
+</body>
+</html>

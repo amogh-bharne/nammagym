@@ -1,0 +1,34 @@
+<!-- templates/add_attendance.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include necessary headers and stylesheets -->
+</head>
+<body>
+    <h1>Add Attendance</h1>
+    <form action="{{ url_for('attendance_maintenance.add_attendance') }}" method="post">
+        <label for="member_id">Select Member:</label>
+        <select id="member_id" name="member_id" required>
+            {% for member in members %}
+                <option value="{{ member.MemberID }}">{{ member.FullName }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="class_id">Select Class:</label>
+        <select id="class_id" name="class_id" required>
+            {% for class in classes %}
+                <option value="{{ class.ClassID }}">{{ class.ClassName }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="attendance_date">Attendance Date:</label>
+        <input type="date" id="attendance_date" name="attendance_date" required><br>
+
+        <label for="attendance_status">Attendance Status:</label>
+        <input type="text" id="attendance_status" name="attendance_status" required><br>
+
+        <button type="submit">Add Attendance</button>
+    </form>
+    <a href="{{ url_for('attendance_maintenance.view_attendance') }}">Back to Attendance Records</a>
+</body>
+</html>

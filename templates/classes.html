@@ -1,0 +1,58 @@
+<!-- templates/classes.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add custom styles here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Classes</h1>
+
+        <!-- Display all classes in a table -->
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Class Name</th>
+                    <th>Description</th>
+                    <th>Schedule Date</th>
+                    <th>Schedule Time</th>
+                    <th>Max Capacity</th>
+                    <th>Instructor</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for class in classes %}
+                    <tr>
+                        <td>{{ class.ClassName }}</td>
+                        <td>{{ class.Description }}</td>
+                        <td>{{ class.ScheduleDate }}</td>
+                        <td>{{ class.ScheduleTime }}</td>
+                        <td>{{ class.MaxCapacity }}</td>
+                        <td>{{ class.InstructorName }}</td>
+                        <td>
+                            <a href="{{ url_for('class_management.edit_class', class_id=class.ClassID) }}" class="btn btn-primary">Edit</a>
+                            <form action="{{ url_for('class_management.delete_class', class_id=class.ClassID) }}" method="post" style="display: inline;">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this class?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ url_for('class_management.add_class') }}" class="btn btn-success">Add Class</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
