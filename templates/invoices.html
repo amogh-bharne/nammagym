@@ -1,0 +1,96 @@
+<!-- templates/invoices.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoices</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td:last-child {
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+            margin-right: 10px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: #fff;
+        }
+        .edit {
+            background-color: #4CAF50;
+        }
+        .delete {
+            background-color: #f44336;
+        }
+        a:hover {
+            opacity: 0.8;
+        }
+        .add-btn {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .add-btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Invoices</h1>
+    <a href="{{ url_for('invoices_management.add_invoice') }}" class="add-btn">Add Invoice</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Invoice ID</th>
+                <th>Member ID</th>
+                <th>Issue Date</th>
+                <th>Due Date</th>
+                <th>Total Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for invoice in invoices %}
+                <tr>
+                    <td>{{ invoice.InvoiceID }}</td>
+                    <td>{{ invoice.MemberID }}</td>
+                    <td>{{ invoice.IssueDate }}</td>
+                    <td>{{ invoice.DueDate }}</td>
+                    <td>{{ invoice.TotalAmount }}</td>
+                    <td>
+                        <a href="{{ url_for('invoices_management.edit_invoice', invoice_id=invoice.InvoiceID) }}" class="edit">Edit</a>
+                        <form action="{{ url_for('invoices_management.delete_invoice', invoice_id=invoice.InvoiceID) }}" method="post">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="delete">Delete</button>
+                        </form>
+                    </td>
+                    
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

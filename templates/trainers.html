@@ -1,10 +1,73 @@
-<!-- templates/trainers.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trainers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        li a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin-right: 10px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #007bff;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        a.add-link {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        a.add-link:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
     <h1>Trainers</h1>
@@ -16,15 +79,12 @@
                 <a href="{{ url_for('trainer_management.view_trainer', trainer_id=trainer.TrainerID) }}">
                     {{ trainer.FirstName }} {{ trainer.LastName }} - {{ trainer.Specialization }}
                 </a>
-                <!-- <a href="{{ url_for('trainer_management.edit_trainer', trainer_id=trainer.TrainerID) }}">Edit</a> -->
-                <a href="{{ url_for('trainer_management.delete_trainer', trainer_id=trainer.TrainerID) }}" class="btn btn-primary">Delete</a>
-
-                <!-- Add the button to access personal training -->
+                <a href="{{ url_for('trainer_management.delete_trainer', trainer_id=trainer.TrainerID) }}" class="btn btn-danger">Delete</a>
                 <a href="{{ url_for('trainer_management.view_personal_training', trainer_id=trainer.TrainerID) }}" class="btn btn-primary">Personal Training</a>
             </li>
         {% endfor %}
     </ul>
 
-    <a href="{{ url_for('trainer_management.add_trainer') }}">Add Trainer</a>
+    <a href="{{ url_for('trainer_management.add_trainer') }}" class="add-link">Add Trainer</a>
 </body>
 </html>

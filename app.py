@@ -5,6 +5,10 @@ from db_config import execute_query
 from class_management import class_management_routes
 from attendance_management import attendance_maintenance_routes
 from dashboard import dashboard_routes
+from payments_management import payments_management_routes
+from invoices_management import invoices_management_routes
+from equipment_management import equipment_management_routes
+
 # Import other modules for different features
 
 app = Flask(__name__)
@@ -20,6 +24,11 @@ app.register_blueprint(class_management_routes)
 
 app.register_blueprint(attendance_maintenance_routes)
 
+app.register_blueprint(payments_management_routes)
+
+app.register_blueprint(invoices_management_routes)
+
+app.register_blueprint(equipment_management_routes)
 
 
 

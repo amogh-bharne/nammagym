@@ -1,0 +1,32 @@
+<!-- templates/add_payment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add your head content -->
+</head>
+<body>
+    <h1>Add Payment</h1>
+
+    <form action="{{ url_for('payments_management.add_payment') }}" method="post">
+        <label for="member_id">Select Member:</label>
+        <select id="member_id" name="member_id" required>
+            {% for member in members %}
+                <option value="{{ member.MemberID }}">{{ member.MemberName }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <label for="payment_date">Payment Date:</label>
+        <input type="date" id="payment_date" name="payment_date" required><br>
+
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount" required><br>
+
+        <label for="payment_method">Payment Method:</label>
+        <input type="text" id="payment_method" name="payment_method" required><br>
+
+        <button type="submit">Add Payment</button>
+    </form>
+    <a href="{{ url_for('payments_management.payments') }}">Back to Payments</a>
+</body>
+</html>

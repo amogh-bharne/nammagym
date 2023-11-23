@@ -1,0 +1,66 @@
+<!-- templates/payments.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            margin-left: 10px;
+        }
+        form {
+            display: inline;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Payments</h1>
+
+    <ul>
+        {% for payment in payments %}
+            <li>
+                <strong>Member ID:</strong> {{ payment.MemberID }}<br>
+                <strong>Payment Date:</strong> {{ payment.PaymentDate }}<br>
+                <strong>Amount:</strong> {{ payment.Amount }}<br>
+                <strong>Payment Method:</strong> {{ payment.PaymentMethod }}
+                <a href="{{ url_for('payments_management.edit_payment', payment_id=payment.PaymentID) }}">Edit</a>
+                <form action="{{ url_for('payments_management.delete_payment', payment_id=payment.PaymentID) }}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('payments_management.add_payment') }}">Add Payment</a>
+</body>
+</html>
