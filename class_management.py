@@ -73,5 +73,3 @@ def delete_class(class_id):
 
         return redirect(url_for('class_management.classes'))
 
-# Add more routes for editing and deleting classes if needed
-# You can follow a similar structure to the existing trainer and member management routes.

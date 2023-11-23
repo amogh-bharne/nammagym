@@ -1,35 +1,11 @@
-import mysql.connector
-from flask import Flask, render_template
-
-app = Flask(__name__)
-
-# Configure MySQL connection
-db_config = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': '12345678',
-    'database': 'nammagym'
-}
-
-# Function to execute MySQL queries
 
 
-def execute_query(query, values=None):
-    connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor(dictionary=True)
+from flask import Blueprint, render_template, redirect, url_for, request
+from db_config import execute_query
 
-    try:
-        cursor.execute(query, values)
-        result = cursor.fetchall()
-        return result
-    finally:
-        cursor.close()
-        connection.close()
+dashboard_routes = Blueprint('dashboard', __name__)
 
-# Route to render the dashboard
-
-
-@app.route('/dashboard', methods=['GET'])
+@dashboard_routes.route('/', methods=['GET'])
 def dashboard():
     # Query database for metrics
     total_members_query = "SELECT COUNT(*) AS total_members FROM Members"
@@ -52,5 +28,4 @@ def dashboard():
                            upcoming_classes=upcoming_classes, total_revenue=total_revenue, pending_payments=pending_payments)
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
