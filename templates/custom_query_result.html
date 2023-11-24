@@ -23,17 +23,11 @@
                         <table class="min-w-full">
                             <thead>
                                 <tr>
-                                    {% if result|length > 0 %}
-                                        {% for key in result[0].keys() %}
-                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                {{ key }}
-                                            </th>
-                                        {% endfor %}
-                                    {% else %}
+                                    {% for key in result[0].keys() %}
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Result
+                                            {{ key }}
                                         </th>
-                                    {% endif %}
+                                    {% endfor %}
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,6 +47,10 @@
                     <p>No results found.</p>
                 {% endif %}
             </div>
+
+            <a href="/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Back to Dashboard
+            </a>
         </div>
     </section>
 </body>

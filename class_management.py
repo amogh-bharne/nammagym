@@ -4,11 +4,18 @@ from db_config import execute_query
 
 class_management_routes = Blueprint('class_management', __name__)
 
+
+
 @class_management_routes.route('/classes', methods=['GET'])
 def classes():
-    query = "SELECT * FROM Classes"
+    query = """
+        SELECT Classes.*, Trainers.FirstName AS TrainerFirstName, Trainers.LastName AS TrainerLastName
+        FROM Classes
+        LEFT JOIN Trainers ON Classes.InstructorID = Trainers.TrainerID
+    """
     classes = execute_query(query)
     return render_template('classes.html', classes=classes)
+
 
 @class_management_routes.route('/classes/add', methods=['GET', 'POST'])
 def add_class():

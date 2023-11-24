@@ -36,7 +36,7 @@
                         <td>{{ class.ScheduleDate }}</td>
                         <td>{{ class.ScheduleTime }}</td>
                         <td>{{ class.MaxCapacity }}</td>
-                        <td>{{ class.InstructorName }}</td>
+                        <td>{{ class.TrainerFirstName }} {{ class.TrainerLastName }}</td>
                         <td>
                             <a href="{{ url_for('class_management.edit_class', class_id=class.ClassID) }}" class="btn btn-primary">Edit</a>
                             <form action="{{ url_for('class_management.delete_class', class_id=class.ClassID) }}" method="post" style="display: inline;">
@@ -50,6 +50,10 @@
         </table>
 
         <a href="{{ url_for('class_management.add_class') }}" class="btn btn-success">Add Class</a>
+
+            <a href="/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    Back to Dashboard
+</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
