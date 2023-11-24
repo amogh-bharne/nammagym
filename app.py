@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,request
 from member_management import member_management_routes
 from trainer_management import trainer_management_routes
 from db_config import execute_query
@@ -29,6 +29,22 @@ app.register_blueprint(payments_management_routes)
 app.register_blueprint(invoices_management_routes)
 
 app.register_blueprint(equipment_management_routes)
+
+
+@app.route('/custom_query', methods=['GET', 'POST'])
+def custom_query():
+    if request.method == 'POST':
+        # Get the user-entered query from the form
+        user_query = request.form.get('user_query')
+
+        # Execute the query
+        result = execute_query(user_query)
+
+        # Render the template with the query result
+        return render_template('custom_query_result.html', user_query=user_query, result=result)
+
+    # Render the custom query form
+    return render_template('custom_query.html')
 
 
 

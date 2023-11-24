@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Query Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/output.css') }}">
+</head>
+<body bgcolor="#ECF4D6">
+    <section>
+        <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+            <div class="mx-auto max-w-3xl text-center">
+                <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">
+                    Custom Query Result
+                </h2>
+            </div>
+
+            <div class="mt-8 sm:mt-12">
+                <p class="mb-4">Query: {{ user_query }}</p>
+
+                {% if result %}
+                    <div class="border-t border-gray-200">
+                        <table class="min-w-full">
+                            <thead>
+                                <tr>
+                                    {% if result|length > 0 %}
+                                        {% for key in result[0].keys() %}
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                {{ key }}
+                                            </th>
+                                        {% endfor %}
+                                    {% else %}
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Result
+                                        </th>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in result %}
+                                    <tr>
+                                        {% for value in row.values() %}
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                {{ value }}
+                                            </td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p>No results found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+</body>
+</html>
