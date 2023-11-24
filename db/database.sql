@@ -1,4 +1,7 @@
--- Members table with ON DELETE CASCADE
+create database if not exists nammagym;
+
+use nammagym;
+
 CREATE TABLE Members (
     MemberID INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,
@@ -10,7 +13,6 @@ CREATE TABLE Members (
     MembershipExpiry DATE
 );
 
--- Trainers table with ON DELETE CASCADE
 CREATE TABLE Trainers (
     TrainerID INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,
@@ -19,7 +21,7 @@ CREATE TABLE Trainers (
     ContactInfo VARCHAR(100)
 );
 
--- Classes table with ON DELETE CASCADE
+
 CREATE TABLE Classes (
     ClassID INT AUTO_INCREMENT PRIMARY KEY,
     ClassName VARCHAR(50) NOT NULL,
@@ -31,7 +33,7 @@ CREATE TABLE Classes (
     FOREIGN KEY (InstructorID) REFERENCES Trainers(TrainerID) ON DELETE CASCADE
 );
 
--- Equipment table
+
 CREATE TABLE Equipment (
     EquipmentID INT AUTO_INCREMENT PRIMARY KEY,
     EquipmentName VARCHAR(50) NOT NULL,
@@ -40,7 +42,6 @@ CREATE TABLE Equipment (
     LastMaintenanceDate DATE
 );
 
--- Attendance table with ON DELETE CASCADE
 CREATE TABLE Attendance (
     AttendanceID INT AUTO_INCREMENT PRIMARY KEY,
     MemberID INT,
@@ -51,7 +52,7 @@ CREATE TABLE Attendance (
     FOREIGN KEY (ClassID) REFERENCES Classes(ClassID) ON DELETE CASCADE
 );
 
--- Payments table with ON DELETE CASCADE
+
 CREATE TABLE Payments (
     PaymentID INT AUTO_INCREMENT PRIMARY KEY,
     MemberID INT,
@@ -61,7 +62,6 @@ CREATE TABLE Payments (
     FOREIGN KEY (MemberID) REFERENCES Members(MemberID) ON DELETE CASCADE
 );
 
--- Invoices table with ON DELETE CASCADE
 CREATE TABLE Invoices (
     InvoiceID INT AUTO_INCREMENT PRIMARY KEY,
     MemberID INT,
@@ -71,7 +71,7 @@ CREATE TABLE Invoices (
     FOREIGN KEY (MemberID) REFERENCES Members(MemberID) ON DELETE CASCADE
 );
 
--- PersonalTraining table with ON DELETE CASCADE
+
 CREATE TABLE PersonalTraining (
     PTID INT AUTO_INCREMENT PRIMARY KEY,
     MemberID INT,

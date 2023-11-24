@@ -37,12 +37,6 @@ def add_member():
     return redirect(url_for('member_management.member_management'))
 
 
-# member_management.py
-
-# ... (existing code)
-# member_management.py
-
-# ... (existing code)
 
 @member_management_routes.route('/members/<int:member_id>', methods=['GET', 'POST'])
 def view_member(member_id):

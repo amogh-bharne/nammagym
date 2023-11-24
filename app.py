@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template, request
 from member_management import member_management_routes
 from trainer_management import trainer_management_routes
 from db_config import execute_query
@@ -45,7 +45,6 @@ def custom_query():
 
     # Render the custom query form
     return render_template('custom_query.html')
-
 
 
 if __name__ == '__main__':
