@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-color: #ECF4D6;
             margin: 0;
             padding: 20px;
         }
@@ -26,16 +26,28 @@
             margin-bottom: 15px;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        li a {
-            text-decoration: none;
-            color: #007bff;
+        .trainer-info {
+            flex: 1;
+        }
+        .trainer-name {
+            margin-bottom: 5px;
             font-weight: bold;
+            color: #007bff;
+        }
+        .trainer-specialization {
+            color: #6c757d;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
         }
         .btn {
             display: inline-block;
             padding: 8px 16px;
-            margin-right: 10px;
             text-decoration: none;
             color: #fff;
             border-radius: 5px;
@@ -76,11 +88,20 @@
     <ul>
         {% for trainer in trainers %}
             <li>
-                <a href="{{ url_for('trainer_management.view_trainer', trainer_id=trainer.TrainerID) }}">
-                    {{ trainer.FirstName }} {{ trainer.LastName }} - {{ trainer.Specialization }}
-                </a>
-                <a href="{{ url_for('trainer_management.delete_trainer', trainer_id=trainer.TrainerID) }}" class="btn btn-danger">Delete</a>
-                <a href="{{ url_for('trainer_management.view_personal_training', trainer_id=trainer.TrainerID) }}" class="btn btn-primary">Personal Training</a>
+                <div class="trainer-info">
+                    <div class="trainer-name">
+                        <a href="{{ url_for('trainer_management.view_trainer', trainer_id=trainer.TrainerID) }}">
+                            {{ trainer.FirstName }} {{ trainer.LastName }}
+                        </a>
+                    </div>
+                    <div class="trainer-specialization">
+                        {{ trainer.Specialization }}
+                    </div>
+                </div>
+                <div class="buttons">
+                    <a href="{{ url_for('trainer_management.delete_trainer', trainer_id=trainer.TrainerID) }}" class="btn btn-danger">Delete</a>
+                    <a href="{{ url_for('trainer_management.view_personal_training', trainer_id=trainer.TrainerID) }}" class="btn btn-primary">Personal Training</a>
+                </div>
             </li>
         {% endfor %}
     </ul>

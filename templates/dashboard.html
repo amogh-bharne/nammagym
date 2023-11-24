@@ -1,62 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gym Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('gym-with-light-wall-treadmill_808092-1997.jpg'); /* Replace 'gym_background.jpg' with your gym-themed image */
-            background-size: cover;
-            background-position: center;
-            color: #cc8d8d;
-        }
-        h1 {
-            text-align: center;
-            padding-top: 50px;
-            font-size: 3em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        }
-        div {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            margin: 20px;
-            border-radius: 10px;
-        }
-        h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 1.2em;
-            margin-bottom: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
 </head>
-<body>
-    <h1>Gym Dashboard</h1>
 
-    <div>
-        <h3>Member Metrics</h3>
-        <p>Total Members: {{ total_members }}</p>
-        <p>Active Memberships: {{ active_memberships }}</p>
-    </div>
+<body bgcolor="#ECF4D6">
+    <section>
+        <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+            <div class="mx-auto max-w-3xl text-center">
+                <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">
+                    Gym Dashboard Metrics
+                </h2>
 
-    <div>
-        <h3>Class Metrics</h3>
-        <p>Upcoming Classes: {{ upcoming_classes }}</p>
-    </div>
+                <p class="mt-4 text-gray-500 sm:text-xl">
+                    Welcome to Gym Database Management System!
+                </p>
+            </div>
 
-    <div>
-        <h3>Financial Metrics</h3>
-        <p>Total Revenue: {{ total_revenue }}</p>
-        <p>Pending Payments: {{ pending_payments }}</p>
-    </div>
+            <div class="mt-8 sm:mt-12">
+                <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                    <div class="flex flex-col rounded-lg bg-blue-100 px-4 py-8 text-center">
+                        <dt class="order-last text-lg font-medium text-gray-500">
+                            Total Members
+                        </dt>
 
-    <!-- Add more sections and metrics as needed -->
+                        <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">
+                            <a href="{{url_for('member_management.member_management')}}" class="hover:underline"> {{ total_members }} </a>
+                        </dd>
+                    </div>
 
+                    <div class="flex flex-col rounded-lg bg-blue-100 px-4 py-8 text-center">
+                        <dt class="order-last text-lg font-medium text-gray-500">
+                            Active Memberships
+                        </dt>
+
+                        <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">
+                            {{ active_memberships }}
+                        </dd>
+                    </div>
+
+                    <div class="flex flex-col rounded-lg bg-blue-100 px-4 py-8 text-center">
+                        <dt class="order-last text-lg font-medium text-gray-500">
+                            Upcoming Classes
+                        </dt>
+
+                        <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">
+                            <a href="{{url_for('class_management.classes')}}" class="hover:underline">{{ upcoming_classes }}</a>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+
+            <div class="mt-8 sm:mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                        <div class="flex flex-col rounded-lg bg-blue-100 px-4 py-8 text-center">
+                        <a href="{{url_for('trainer_management.trainers')}}" class="text-xl font-medium text-gray-500 hover:underline">
+                            Trainers
+                        </a>
+                    </div>
+                    <div class="flex flex-col rounded-lg bg-blue-100 px-4 py-8 text-center">
+                        <a href="{{url_for('payments_management.payments')}}" class="text-xl font-medium text-gray-500 hover:underline">
+                            Payments
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col rounded-lg bg-blue-100 px-4 py-8 text-center">
+                        <a href="{{url_for('invoices_management.display_invoices')}}" class="text-xl font-medium text-gray-500 hover:underline">
+                            Invoices
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col rounded-lg bg-blue-100 px-4 py-8 text-center">
+                        <a href="{{url_for('attendance_maintenance.view_attendance')}}" class="text-xl font-medium text-gray-500 hover:underline">
+                            Attendance
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 sm:mt-12">
+                <div class="flex flex-col rounded-lg bg-blue-100 px-4 py-8 text-center">
+                    <a href="{{url_for('equipment_management.equipment')}}" class="text-xl font-medium text-gray-500 hover:underline">
+                        Equipment Management
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
+
 </html>
