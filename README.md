@@ -13,7 +13,6 @@ Made as part of the final project for UE21CS351A.
 - Custom Query: Execute custom SQL queries and view the results.
 - Dashboard Metrics: Overview of gym metrics, including total members, active memberships, upcoming classes.
 
-Certainly! Here's an improved version of your README:
 
 ## Steps to Run
 
